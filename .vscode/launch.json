@@ -18,7 +18,8 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/index.js"
+      "args": ["most-genre"],
+      "program": "${workspaceFolder}/index.mjs"
     }
   ]
 }
