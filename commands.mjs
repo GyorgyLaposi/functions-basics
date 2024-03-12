@@ -26,12 +26,23 @@ function getMin(arr, compare) {
   return min;
 }
 
-// equals(a1, a2)
-// if a1 === a2 ret true
-// else ret false
-function search(arr, equals) {
-
+function search(arr, condition) {
+  for (const item of arr) {
+    if (condition(item)) {
+      return item;
+    }
+  }
+  // optional
+  return null;
 }
+
+
+function transform(arr, transformer) {
+  return []
+}
+
+transform([1, 2, 3], (num) => num * 2);
+// [2, 4, 6]
 
 function searchByKeyValue(arr, key, value) {
   for (let i = 0; i < arr.length; i++) {
@@ -67,23 +78,27 @@ export function getAlbumWithFewestGenres(albums) {
 }
 
 export function getAlbumWithYearOf(albums, byYear) {
-  const album = searchByKeyValue(albums, 'year', byYear);
-  console.log('By Year', album.title);
+  const album = search(albums, function (album) {
+    return album.year === byYear;
+  });
+  console.log("By Year", album.title);
 }
 
-export function getAlbumWithArtist(albums, artist) {
-  const album = searchByKeyValue(albums, 'artist', artist);
-  console.log('By Artist', album.title);
+export function getAlbumByArtist(albums, artist) {
+  const found = search(albums, function (album) {
+    return album.artist === artist;
+  });
+  console.log("By Artist", found.title);
+}
+
+export function getAlbumByTitle(albums, title) {
+  const found = search(albums, (album) => album.title === title);
+  console.log("By Tilte", found.title);
 }
 
 export function getAlbumByGenre(albums, byGenre) {
-  for (let i = 0; i < albums.length; i++) {
-    for (let j = 0; j < albums[i].genres.length; j++) {
-      if (albums[i].genres[j] === byGenre) {
-        console.log("By genre", albums[i].title);
-        return;
-      }
-    }
-  }
+  const album = search(albums, function (album) {
+    return album.genres.includes(byGenre);
+  });
+  console.log("By Genre", album.title);
 }
-
