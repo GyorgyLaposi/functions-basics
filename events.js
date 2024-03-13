@@ -23,3 +23,13 @@ buttonB.addEventListener("click", handleButtonBClickEvent);
 window.addEventListener("load", () => {
   print("Window loaded");
 });
+
+const inputA = document.querySelector("#text-a");
+const inputB = document.querySelector("#text-b");
+const testselector = document.querySelector("#select-a");
+
+function handleinputAEvent(){
+  print("text typed");
+}
+
+inputA.addEventListener("input", handleinputAEvent);
